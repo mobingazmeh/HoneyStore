@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+@font-face {
+  font-family: 'YekanBakh-Light.woff2';
+  src: url('/fonts/YekanBakh-Light.woff2') format('woff2');
+  /* انواع فرمت‌های فونت را می‌توانید اضافه کنید */
+}
+body {
+  font-family: 'YekanBakh-Light.woff2', sans-serif;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
