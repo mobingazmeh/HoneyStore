@@ -60,7 +60,7 @@ const HomeSlider: React.FC = () => {
         muted
         playsInline
       >
-        <source src="/video/Untitled design(6).mp4" type="video/mp4" />
+        <source src="/video/Untitleddesign.mp4" type="video/mp4" />
       </video>
 
       {/* اسلایدر برای متون */}
