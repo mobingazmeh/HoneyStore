@@ -1,0 +1,88 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@/public/*": [
+        "public/*"
+      ],
+      "@/app/*": [
+        "src/app/*"
+      ],
+      "@/models/*": [
+        "src/components/models/*"
+      ],
+      "@/utils/*": [
+        "src/utils/*"
+      ],
+      "@/Layout/*": [
+        "src/components/layout/*"
+      ],
+      "@/module/*": [
+        "src/components/module/*"
+      ],
+      "@/template/*": [
+        "src/components/template/*"
+      ],
+      "@/lottie/*": [
+        "src/lottie/*"
+      ],
+      "@/3DModels/*": [
+        "src/3DModels/*"
+      ],
+      "@/Slider/*": [
+        "src/components/module/Slider"
+      ],
+      "@/providers/*": [
+        "src/providers/*"
+      ],
+      "@/elements/*": [
+        "src/elements/*"
+      ],
+      "@/types/*": [
+        "src/types/*"
+      ],
+      "@/validation/*": [
+        "src/validation/*"
+      ],
+      "@/components/*": [
+        "src/components/*"
+      ]
+    },
+    "noEmit": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "src/**/*.tsx",
+    "src/**/*.ts",
+    "next-env.d.ts",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
