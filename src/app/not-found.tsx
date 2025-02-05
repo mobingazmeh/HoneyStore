@@ -1,3 +1,4 @@
+//not-found.tsx
 'use client'
 import LottieBear from '@/lottie/LottieBear'
 

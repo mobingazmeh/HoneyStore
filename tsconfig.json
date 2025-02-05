@@ -24,10 +24,6 @@
       "@/public/*": [
         "public/*"
       ],
-    
-    "@/__tests__/*": [
-      "__tests__/*"
-    ],
       "@/app/*": [
         "src/app/*"
       ],
