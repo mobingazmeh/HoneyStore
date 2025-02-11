@@ -1,6 +1,5 @@
-'use client'
+"use client";
 
-import BeeModel from "@/3DModels/BeeModel";
 import HoneyList from "@/components/module/HoneyList";
 import HomeSlider from "@/components/module/Slider/HomeSlider";
 import DeliveryService from "@/module/DeliveryService";
@@ -12,9 +11,9 @@ import Abute from "@/module/Abute";
 const HomePage: React.FC = () => {
   return (
     <div className="bg-A w-full h-full">
-      <div className="relative z-10">
+      {/* <div className="relative z-10">
         <BeeModel />
-      </div>
+      </div> */}
       <HomeSlider />
       <Abute />
       <LottieBees />
