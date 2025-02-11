@@ -1,9 +1,8 @@
-
-//useOptionsStore.ts
-
+// useOptionsStore.ts
 import { create } from 'zustand';
 import { devtools, persist, createJSONStorage } from 'zustand/middleware';
-import {InformationSite,Social,BusinessInformation,OptionsStoreState,OptionsData} from '@/types/optionsStoreTypes'
+import { fetchOptions } from '@/utils/requests'; // وارد کردن تابع درخواست
+import { OptionsStoreState } from '@/types/optionsStoreTypes';
 
 const useOptionsStore = create<OptionsStoreState>()(
   devtools(
@@ -37,19 +36,10 @@ const useOptionsStore = create<OptionsStoreState>()(
         isLoading: false,
         isError: false,
         getOptionsFromApi: async () => {
-          set({ isLoading: true });
+          set({ isLoading: true, isError: false });
+
           try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/options`, {
-              headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-              },
-              next: { revalidate: 7 * 24 * 60 * 1000 },//getstatickprops
-            });
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
-            const data = await response.json();
+            const data = await fetchOptions();
             set({ options: data.results, isLoading: false });
           } catch (error) {
             set({ isError: true, isLoading: false });
@@ -59,7 +49,7 @@ const useOptionsStore = create<OptionsStoreState>()(
       }),
       {
         name: 'options-store',
-        storage: createJSONStorage(() => localStorage), // استفاده از localStorage
+        storage: createJSONStorage(() => localStorage),
         partialize: (state) => ({
           options: state.options,
           isLoading: state.isLoading,

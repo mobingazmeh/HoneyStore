@@ -1,5 +1,6 @@
 import Layout from "@/components/layout/Layout";
 import "./globals.css";
+import Provider from "./providers";
 
 // نوع داده برای props
 interface RootLayoutProps {
@@ -47,7 +48,10 @@ const RootLayout = ({ children, isLoading = false }: RootLayoutProps) => {
   return (
     <html lang="fa" dir="ltr">
       <body>
+        <Provider>
         <Layout>{children}</Layout>
+        </Provider>
+        
       </body>
     </html>
   );

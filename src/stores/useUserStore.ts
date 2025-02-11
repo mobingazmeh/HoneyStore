@@ -1,7 +1,8 @@
+// useUserStore.ts
 import { create } from 'zustand';
 import { devtools, persist, createJSONStorage } from 'zustand/middleware';
-import Cookies from 'js-cookie';
-import { UserResult, UserResponse, UserStore } from '@/types/userStoreTypes'; // Import the types
+import { getUser, updateUser } from '@/utils/requests'; // Import the API functions
+import { UserResponse, UserStore } from '@/types/userStoreTypes'; // Import the types
 
 const useUserStore = create<UserStore>()(
   devtools(
@@ -22,59 +23,17 @@ const useUserStore = create<UserStore>()(
         // Function to get user data from API
         getUserFromApi: async () => {
           try {
-            const token = Cookies.get('authToken'); // Get token from cookies
-            if (!token) {
-              console.error('No auth token found');
-              return;
-            }
-
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user`, {
-              headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
-              },
-              cache: 'no-cache',//getserversideprops
-            });
-
-            if (!response.ok) {
-              console.error('Error fetching user data:', response.statusText);
-              return;
-            }
-
-            const data: UserResponse = await response.json(); // Convert response to UserResponse
-            set({ user: data }); // Store user data
+            const userData = await getUser(); // Fetch data from API
+            set({ user: userData }); // Store user data
           } catch (error) {
             console.error('Error fetching user data:', error);
           }
         },
 
         // Function to update user data in API
-        updateUserInApi: async (userData: UserResult) => {
+        updateUserInApi: async (userData: any) => {
           try {
-            const token = Cookies.get('authToken'); // Get token from cookies
-            if (!token) {
-              console.error('No auth token found');
-              return;
-            }
-
-            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/user/update`, {
-              method: 'PUT',
-              headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${token}`
-              },
-              body: JSON.stringify(userData),
-              cache: 'no-cache',
-            });
-
-            if (!response.ok) {
-              console.error('Error updating user data:', response.statusText);
-              return;
-            }
-
-            const updatedUser: UserResponse = await response.json(); // Convert response to UserResponse
+            const updatedUser = await updateUser(userData); // Update data via API
             set({ user: updatedUser }); // Store updated user data
           } catch (error) {
             console.error('Error updating user data:', error);

@@ -5,7 +5,7 @@ import HomePage from "@/components/template/HomePage";
 // کامپوننت 'page' تایپ شده به نوع React.FC (برای کامپوننت‌های function)
 const Page: React.FC = () => {
   return (
-    <div className="w-full h-full ">
+    <div className="w-full h-full bg-A">
       <HomePage />
     </div>
   );

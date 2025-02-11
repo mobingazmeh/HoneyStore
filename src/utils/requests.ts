@@ -1,27 +1,31 @@
-//requsts.ts
+// lib/api.ts
+import axiosInstance from './axiosInstance';
 
-import axiosInstance from "./axiosInstance";
-
-// **درخواست دریافت اطلاعات کاربر**
-export const getUser = async () => {
-  const response = await axiosInstance.get("/user", {
-    cache: "no-cache",//getServerSideProps
-  });
-  return response.data;
+export const postData = async (endpoint: string, data: object) => {
+  try {
+    const response = await axiosInstance.post(endpoint, data);
+    return response.data;
+  } catch (error) {
+    throw new Error('خطا در ارسال داده‌ها');
+  }
 };
 
-// **درخواست به‌روزرسانی اطلاعات کاربر**
-export const updateUser = async (userData: any) => {
-  const response = await axiosInstance.put("/user/update", userData);
-  return response.data;
+export const putData = async (endpoint: string, data: object) => {
+  try {
+    const response = await axiosInstance.put(endpoint, data);
+    return response.data;
+  } catch (error) {
+    throw new Error('خطا در به‌روزرسانی داده‌ها');
+  }
 };
 
-// **درخواست دریافت تنظیمات سایت**
-export const getOptions = async () => {
-  const response = await axiosInstance.get("/options", {
-    headers: {
-      next: { revalidate: 7 * 24 * 60 * 1000 }, // getStaticProps
-    },
-  });
-  return response.data;
-};
+
+
+export const fetchData = async (endpoint: string) => {
+  try {
+    const response = await axiosInstance.get(endpoint);
+    return response.data;
+  } catch (error) {
+    throw new Error('خطا در واکشی داده‌ها');
+  }
+}
